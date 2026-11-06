@@ -4,7 +4,8 @@ on:
   # 定时触发 - 每天北京时间 18:00 (UTC 10:00)
   schedule:
     # - cron: '0 10 * * 1-5'     # 周一到周五，UTC 10:00 = 北京时间 18:00
-    - cron: '30 7 * * 1-5'     # 周一到周五，UTC 07:30 = 北京时间 15:30
+    - cron: '30 15 * * 1-5'     # 北京时间 15:30 
+    timezone: "Asia/Shanghai"
   # 手动触发
   workflow_dispatch:
     inputs:
@@ -39,7 +40,7 @@ jobs:
     
     steps:
       - name: 随机延迟（避免固定时间访问）
-        run: sleep $((RANDOM % 60))  # 随机延迟0-60秒启动
+        run: sleep $((RANDOM % 20))  # 随机延迟0-60秒启动
       
       - name: 检出代码
         uses: actions/checkout@v5
